@@ -1,0 +1,379 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>843</width>
+    <height>595</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>BAMF v0.1</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset>../../../../../usr/share/pixmaps/pidgin/emotes/default/moon.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QHBoxLayout" >
+    <item>
+     <widget class="QTabWidget" name="arTab" >
+      <property name="sizePolicy" >
+       <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+        <horstretch>3</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="currentIndex" >
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="accelTab" >
+       <attribute name="title" >
+        <string>Accelerometer</string>
+       </attribute>
+       <widget class="QLCDNumber" name="xAxisLCD" >
+        <property name="geometry" >
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>91</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="frameShadow" >
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="segmentStyle" >
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+       </widget>
+       <widget class="QLCDNumber" name="yAxisLCD" >
+        <property name="geometry" >
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>91</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="frameShadow" >
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="segmentStyle" >
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+       </widget>
+       <widget class="QLCDNumber" name="zAxisLCD" >
+        <property name="geometry" >
+         <rect>
+          <x>10</x>
+          <y>140</y>
+          <width>91</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="frameShadow" >
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="segmentStyle" >
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2" >
+        <property name="geometry" >
+         <rect>
+          <x>110</x>
+          <y>20</y>
+          <width>121</width>
+          <height>44</height>
+         </rect>
+        </property>
+        <property name="font" >
+         <font>
+          <pointsize>28</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>X Axis</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3" >
+        <property name="geometry" >
+         <rect>
+          <x>110</x>
+          <y>80</y>
+          <width>121</width>
+          <height>44</height>
+         </rect>
+        </property>
+        <property name="font" >
+         <font>
+          <pointsize>28</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>Y Axis</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_4" >
+        <property name="geometry" >
+         <rect>
+          <x>110</x>
+          <y>140</y>
+          <width>121</width>
+          <height>44</height>
+         </rect>
+        </property>
+        <property name="font" >
+         <font>
+          <pointsize>28</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>Z Axis</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_5" >
+        <property name="geometry" >
+         <rect>
+          <x>110</x>
+          <y>280</y>
+          <width>130</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="font" >
+         <font>
+          <pointsize>28</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>Peak Y</string>
+        </property>
+       </widget>
+       <widget class="QLCDNumber" name="yPeakLCD" >
+        <property name="geometry" >
+         <rect>
+          <x>10</x>
+          <y>280</y>
+          <width>91</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="frameShadow" >
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="segmentStyle" >
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_6" >
+        <property name="geometry" >
+         <rect>
+          <x>110</x>
+          <y>220</y>
+          <width>133</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="font" >
+         <font>
+          <pointsize>28</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>Peak X</string>
+        </property>
+       </widget>
+       <widget class="QLCDNumber" name="zPeakLCD" >
+        <property name="geometry" >
+         <rect>
+          <x>10</x>
+          <y>340</y>
+          <width>91</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="frameShadow" >
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="segmentStyle" >
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+       </widget>
+       <widget class="QLCDNumber" name="xPeakLCD" >
+        <property name="geometry" >
+         <rect>
+          <x>10</x>
+          <y>220</y>
+          <width>91</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="frameShadow" >
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="segmentStyle" >
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_7" >
+        <property name="geometry" >
+         <rect>
+          <x>110</x>
+          <y>340</y>
+          <width>133</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="font" >
+         <font>
+          <pointsize>28</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>Peak Z</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="rawTab" >
+       <attribute name="title" >
+        <string>Raw Output</string>
+       </attribute>
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QTextEdit" name="rawOut" >
+          <property name="acceptDrops" >
+           <bool>false</bool>
+          </property>
+          <property name="readOnly" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="prefTab" >
+       <attribute name="title" >
+        <string>Preferences</string>
+       </attribute>
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QGroupBox" name="groupBox" >
+          <property name="title" >
+           <string>Logging</string>
+          </property>
+          <widget class="QLineEdit" name="lineEdit" >
+           <property name="geometry" >
+            <rect>
+             <x>20</x>
+             <y>50</y>
+             <width>341</width>
+             <height>31</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_8" >
+           <property name="geometry" >
+            <rect>
+             <x>20</x>
+             <y>30</y>
+             <width>59</width>
+             <height>20</height>
+            </rect>
+           </property>
+           <property name="text" >
+            <string>Log file</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton" >
+           <property name="geometry" >
+            <rect>
+             <x>380</x>
+             <y>50</y>
+             <width>84</width>
+             <height>29</height>
+            </rect>
+           </property>
+           <property name="text" >
+            <string>Browse</string>
+           </property>
+          </widget>
+          <widget class="QCheckBox" name="checkBox" >
+           <property name="geometry" >
+            <rect>
+             <x>20</x>
+             <y>90</y>
+             <width>121</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="text" >
+            <string>Enable Logging</string>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" >
+      <item>
+       <widget class="QLabel" name="label" >
+        <property name="text" >
+         <string>Nearby Devices:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="nearDevList" />
+      </item>
+      <item>
+       <widget class="QPushButton" name="conButton" >
+        <property name="text" >
+         <string>Connect</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <action name="actionAbout" >
+   <property name="text" >
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionSelect_All" >
+   <property name="text" >
+    <string>Select All</string>
+   </property>
+  </action>
+  <action name="actionCopy" >
+   <property name="text" >
+    <string>Copy</string>
+   </property>
+  </action>
+  <action name="actionCut" >
+   <property name="text" >
+    <string>Cut</string>
+   </property>
+  </action>
+  <action name="actionPaste" >
+   <property name="text" >
+    <string>Paste</string>
+   </property>
+  </action>
+  <action name="actionLogging" >
+   <property name="text" >
+    <string>Preferences</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

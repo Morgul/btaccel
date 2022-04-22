@@ -1,0 +1,538 @@
+MP2COD 4.12, COFF to COD File Converter
+Copyright (c) 2007 Microchip Technology Inc.
+Listing File Generated: Thu Oct 18 12:03:46 2007
+
+
+Address  Value    Disassembly              Source                                                                           File
+-------  -------  -----------------------  -------------------------------------------------------------------------------  -----
+                                           /*********************************************                                   Z:\home\morgul\development\BtAccel\BtAccel.c
+                                            * Bluetooth Accelerometer PIC18f2320 v1.0   *                                   Z:\home\morgul\development\BtAccel\BtAccel.c
+                                            * by Christopher S. Case pryynaek@gmail.com *                                   Z:\home\morgul\development\BtAccel\BtAccel.c
+                                            *********************************************/                                  Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           #include <p18F2320.h>                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           #include <usart.h>                                                               Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           #include <timers.h>                                                              Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           // Defines                                                                       Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           #define true 1                                                                   Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           #define false 0                                                                  Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           // set configuration bits                                                        Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           #pragma config OSC=HSPLL                                                         Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           unsigned short xaxis = 0;                                                        Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           unsigned short yaxis = 0;                                                        Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           unsigned short zaxis = 0;                                                        Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+000038   d96b     RCALL     0x310          char nibbleToHex (unsigned char nib)                                             Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           {                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+00003a   0efe     MOVLW     0xfe           	if (nib > 9)                                                                    Z:\home\morgul\development\BtAccel\BtAccel.c
+00003c   50db     MOVF      0xdb,0x0,0x0                                                                                    
+00003e   0809     SUBLW     0x9                                                                                             
+000040   e205     BC        0x4c                                                                                            
+000042   0efe     MOVLW     0xfe           		return nib - 10 + 'A';                                                         Z:\home\morgul\development\BtAccel\BtAccel.c
+000044   50db     MOVF      0xdb,0x0,0x0                                                                                    
+000046   0ff6     ADDLW     0xf6                                                                                            
+000048   0f41     ADDLW     0x41                                                                                            
+00004a   d003     BRA       0x52                                                                                            
+                                           	else                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+00004c   0efe     MOVLW     0xfe           		return nib + '0';                                                              Z:\home\morgul\development\BtAccel\BtAccel.c
+00004e   50db     MOVF      0xdb,0x0,0x0                                                                                    
+000050   0f30     ADDLW     0x30                                                                                            
+000052   52e5     MOVF      0xe5,0x1,0x0   }                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+000054   cfe7     MOVFF     0xfe7,0xfd9                                                                                     
+000056   ffd9                                                                                                               
+000058   0012     RETURN    0x0                                                                                             
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+00005a   d93d     RCALL     0x2d6          void byteToHex (unsigned char byte, char* buff)                                  Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           {                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	unsigned char nibLow, nibHigh;                                                  Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// Get the low nibble                                                           Z:\home\morgul\development\BtAccel\BtAccel.c
+00005c   0efe     MOVLW     0xfe           	nibLow = byte & 0x0F;                                                           Z:\home\morgul\development\BtAccel\BtAccel.c
+00005e   50db     MOVF      0xdb,0x0,0x0                                                                                    
+000060   0b0f     ANDLW     0xf                                                                                             
+000062   6edf     MOVWF     0xdf,0x0                                                                                        
+000064   cfdf     MOVFF     0xfdf,0xfe6    	buff[1] = nibbleToHex (nibLow);                                                 Z:\home\morgul\development\BtAccel\BtAccel.c
+000066   ffe6                                                                                                               
+000068   dfe7     RCALL     0x38                                                                                            
+00006a   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+00006c   6ee6     MOVWF     0xe6,0x0                                                                                        
+00006e   0e01     MOVLW     0x1                                                                                             
+000070   6ee7     MOVWF     0xe7,0x0                                                                                        
+000072   d93a     RCALL     0x2e8                                                                                           
+000074   50e7     MOVF      0xe7,0x0,0x0                                                                                    
+000076   26e9     ADDWF     0xe9,0x1,0x0                                                                                    
+000078   0e00     MOVLW     0x0                                                                                             
+00007a   22ea     ADDWFC    0xea,0x1,0x0                                                                                    
+00007c   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+00007e   50e7     MOVF      0xe7,0x0,0x0                                                                                    
+000080   6eef     MOVWF     0xef,0x0                                                                                        
+0002e8   0efc     MOVLW     0xfc                                                                                            
+0002ea   cfdb     MOVFF     0xfdb,0xfe9                                                                                     
+0002ec   ffe9                                                                                                               
+0002ee   0efd     MOVLW     0xfd                                                                                            
+0002f0   cfdb     MOVFF     0xfdb,0xfea                                                                                     
+0002f2   ffea                                                                                                               
+0002f4   0012     RETURN    0x0                                                                                             
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// Get the high nibble                                                          Z:\home\morgul\development\BtAccel\BtAccel.c
+000082   0efe     MOVLW     0xfe           	nibHigh = (byte >> 4) & 0x0F;                                                   Z:\home\morgul\development\BtAccel\BtAccel.c
+000084   38db     SWAPF     0xdb,0x0,0x0                                                                                    
+000086   0b0f     ANDLW     0xf                                                                                             
+000088   0b0f     ANDLW     0xf                                                                                             
+00008a   6ee7     MOVWF     0xe7,0x0                                                                                        
+00008c   0e01     MOVLW     0x1                                                                                             
+00008e   cfe7     MOVFF     0xfe7,0xfdb                                                                                     
+000090   ffdb                                                                                                               
+000092   cfdb     MOVFF     0xfdb,0xfe6    	buff[0] = nibbleToHex (nibHigh);                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+000094   ffe6                                                                                                               
+000096   dfd0     RCALL     0x38                                                                                            
+000098   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+00009a   6ee6     MOVWF     0xe6,0x0                                                                                        
+00009c   d925     RCALL     0x2e8                                                                                           
+00009e   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+0000a0   50e7     MOVF      0xe7,0x0,0x0                                                                                    
+0000a2   6eef     MOVWF     0xef,0x0                                                                                        
+0000a4   0e02     MOVLW     0x2            }                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+0000a6   5ce1     SUBWF     0xe1,0x0,0x0                                                                                    
+0000a8   e202     BC        0xae                                                                                            
+0000aa   6ae1     CLRF      0xe1,0x0                                                                                        
+0000ac   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+0000ae   d117     BRA       0x2de                                                                                           
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           unsigned short doADCon (void)                                                    Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           {	                                                                               Z:\home\morgul\development\BtAccel\BtAccel.c
+0000b0   80c2     BSF       0xc2,0x0,0x0   	ADCON0bits.ADON = 1;	// Turn on the A/D Converter                               Z:\home\morgul\development\BtAccel\BtAccel.c
+0000b2   82c2     BSF       0xc2,0x1,0x0   	ADCON0bits.GO = 1;				// Start Conversion                                       Z:\home\morgul\development\BtAccel\BtAccel.c
+0000b4   b2c2     BTFSC     0xc2,0x1,0x0   	while (ADCON0bits.GO_DONE) {}	// Wait for the A/D to finish                     Z:\home\morgul\development\BtAccel\BtAccel.c
+0000b6   d7fe     BRA       0xb4                                                                                            
+0000b8   90c2     BCF       0xc2,0x0,0x0   	ADCON0bits.ADON = 0;	// Turn off the A/D Converter                              Z:\home\morgul\development\BtAccel\BtAccel.c
+0000ba   cfc3     MOVFF     0xfc3,0xff3    	return ADRES;                                                                   Z:\home\morgul\development\BtAccel\BtAccel.c
+0000bc   fff3                                                                                                               
+0000be   cfc4     MOVFF     0xfc4,0xff4                                                                                     
+0000c0   fff4                                                                                                               
+0000c2   0012     RETURN    0x0            }                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+0000c4   d908     RCALL     0x2d6          char* prepareString (char* adResult, char axis, unsigned short result)           Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           {                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	unsigned char byteH, byteL;                                                     Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// break result into 2 bytes                                                    Z:\home\morgul\development\BtAccel\BtAccel.c
+0000c6   0eff     MOVLW     0xff           	byteL = result & 0xFF;                                                          Z:\home\morgul\development\BtAccel\BtAccel.c
+0000c8   6ee7     MOVWF     0xe7,0x0                                                                                        
+0000ca   0efa     MOVLW     0xfa                                                                                            
+0000cc   cfdb     MOVFF     0xfdb,0x2                                                                                       
+0000ce   f002                                                                                                               
+0000d0   50e7     MOVF      0xe7,0x0,0x0                                                                                    
+0000d2   1602     ANDWF     0x2,0x1,0x0                                                                                     
+0000d4   6a03     CLRF      0x3,0x0                                                                                         
+0000d6   0e01     MOVLW     0x1                                                                                             
+0000d8   c002     MOVFF     0x2,0xfdb                                                                                       
+0000da   ffdb                                                                                                               
+0000dc   0efb     MOVLW     0xfb           	byteH = (result >> 8) & 0xFF;                                                   Z:\home\morgul\development\BtAccel\BtAccel.c
+0000de   cfdb     MOVFF     0xfdb,0x3                                                                                       
+0000e0   f003                                                                                                               
+0000e2   c003     MOVFF     0x3,0x2                                                                                         
+0000e4   f002                                                                                                               
+0000e6   6a03     CLRF      0x3,0x0                                                                                         
+0000e8   5002     MOVF      0x2,0x0,0x0                                                                                     
+0000ea   6edf     MOVWF     0xdf,0x0                                                                                        
+                                           	                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// Byte to ASCI conversion                                                      Z:\home\morgul\development\BtAccel\BtAccel.c
+0000ec   0e01     MOVLW     0x1            	byteToHex (byteH, &adResult[1]);                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+0000ee   d90a     RCALL     0x304                                                                                           
+0000f0   cfdf     MOVFF     0xfdf,0xfe6                                                                                     
+0000f2   ffe6                                                                                                               
+0000f4   dfb2     RCALL     0x5a                                                                                            
+0000f6   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+0000f8   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+0000fa   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+000304   dfd4     RCALL     0x2ae                                                                                           
+000306   c002     MOVFF     0x2,0xfe6                                                                                       
+000308   ffe6                                                                                                               
+00030a   c003     MOVFF     0x3,0xfe6                                                                                       
+00030c   ffe6                                                                                                               
+00030e   0012     RETURN    0x0                                                                                             
+0000fc   0e03     MOVLW     0x3            	byteToHex (byteL, &adResult[3]);                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+0000fe   d902     RCALL     0x304                                                                                           
+000100   0e01     MOVLW     0x1                                                                                             
+000102   cfdb     MOVFF     0xfdb,0xfe6                                                                                     
+000104   ffe6                                                                                                               
+000106   dfa9     RCALL     0x5a                                                                                            
+000108   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+00010a   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+00010c   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+0002ae   6ee7     MOVWF     0xe7,0x0                                                                                        
+0002b0   0efd     MOVLW     0xfd                                                                                            
+0002b2   cfdb     MOVFF     0xfdb,0x2                                                                                       
+0002b4   f002                                                                                                               
+0002b6   0efe     MOVLW     0xfe                                                                                            
+0002b8   cfdb     MOVFF     0xfdb,0x3                                                                                       
+0002ba   f003                                                                                                               
+0002bc   50e7     MOVF      0xe7,0x0,0x0                                                                                    
+0002be   2602     ADDWF     0x2,0x1,0x0                                                                                     
+0002c0   0e00     MOVLW     0x0                                                                                             
+0002c2   2203     ADDWFC    0x3,0x1,0x0                                                                                     
+0002c4   0012     RETURN    0x0                                                                                             
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// Prefix by axis                                                               Z:\home\morgul\development\BtAccel\BtAccel.c
+00010e   d8f3     RCALL     0x2f6          	adResult[0] = axis;                                                             Z:\home\morgul\development\BtAccel\BtAccel.c
+000110   0efc     MOVLW     0xfc                                                                                            
+000112   cfdb     MOVFF     0xfdb,0xfef                                                                                     
+000114   ffef                                                                                                               
+0002f6   0efd     MOVLW     0xfd                                                                                            
+0002f8   cfdb     MOVFF     0xfdb,0xfe9                                                                                     
+0002fa   ffe9                                                                                                               
+0002fc   0efe     MOVLW     0xfe                                                                                            
+0002fe   cfdb     MOVFF     0xfdb,0xfea                                                                                     
+000300   ffea                                                                                                               
+000302   0012     RETURN    0x0                                                                                             
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// Terminate String                                                             Z:\home\morgul\development\BtAccel\BtAccel.c
+000116   0e05     MOVLW     0x5            	adResult[5] = 0;                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+000118   6ee7     MOVWF     0xe7,0x0                                                                                        
+00011a   d8ed     RCALL     0x2f6                                                                                           
+00011c   50e7     MOVF      0xe7,0x0,0x0                                                                                    
+00011e   26e9     ADDWF     0xe9,0x1,0x0                                                                                    
+000120   0e00     MOVLW     0x0                                                                                             
+000122   22ea     ADDWFC    0xea,0x1,0x0                                                                                    
+000124   6aef     CLRF      0xef,0x0                                                                                        
+000126   0e05     MOVLW     0x5            	return &adResult[5];                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+000128   d8c2     RCALL     0x2ae                                                                                           
+00012a   c002     MOVFF     0x2,0xff3                                                                                       
+00012c   fff3                                                                                                               
+00012e   c003     MOVFF     0x3,0xff4                                                                                       
+000130   fff4                                                                                                               
+000132   0e02     MOVLW     0x2            }                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+000134   5ce1     SUBWF     0xe1,0x0,0x0                                                                                    
+000136   e202     BC        0x13c                                                                                           
+000138   6ae1     CLRF      0xe1,0x0                                                                                        
+00013a   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+00013c   d0d0     BRA       0x2de                                                                                           
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+00013e   d8cb     RCALL     0x2d6          void doMeasure (void)                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+0002d6   d81c     RCALL     0x310                                                                                           
+0002d8   0e02     MOVLW     0x2                                                                                             
+0002da   26e1     ADDWF     0xe1,0x1,0x0                                                                                    
+0002dc   0012     RETURN    0x0                                                                                             
+000310   cfd9     MOVFF     0xfd9,0xfe6                                                                                     
+000312   ffe6                                                                                                               
+000314   cfe1     MOVFF     0xfe1,0xfd9                                                                                     
+000316   ffd9                                                                                                               
+000318   0012     RETURN    0x0                                                                                             
+                                           {                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+000140   6ade     CLRF      0xde,0x0       	int idx = 0;                                                                    Z:\home\morgul\development\BtAccel\BtAccel.c
+000142   6add     CLRF      0xdd,0x0                                                                                        
+                                           	                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+000144   6ade     CLRF      0xde,0x0       	for (idx=0; idx<64;) {                                                          Z:\home\morgul\development\BtAccel\BtAccel.c
+000146   6add     CLRF      0xdd,0x0                                                                                        
+000148   cfde     MOVFF     0xfde,0x2                                                                                       
+00014a   f002                                                                                                               
+00014c   cfdd     MOVFF     0xfdd,0x3                                                                                       
+00014e   f003                                                                                                               
+000150   90d8     BCF       0xd8,0x0,0x0                                                                                    
+000152   5003     MOVF      0x3,0x0,0x0                                                                                     
+000154   e604     BN        0x15e                                                                                           
+000156   0e40     MOVLW     0x40                                                                                            
+000158   5c02     SUBWF     0x2,0x0,0x0                                                                                     
+00015a   0e00     MOVLW     0x0                                                                                             
+00015c   5803     SUBWFB    0x3,0x0,0x0                                                                                     
+00015e   e222     BC        0x1a4                                                                                           
+0001a2   d7d2     BRA       0x148                                                                                           
+                                           			// Get X Axis Data                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+000160   6ac2     CLRF      0xc2,0x0       		ADCON0 = 0b00000000;	// AN0                                                    Z:\home\morgul\development\BtAccel\BtAccel.c
+000162   dfa6     RCALL     0xb0           		xaxis = xaxis + doADCon ();                                                    Z:\home\morgul\development\BtAccel\BtAccel.c
+000164   0100     MOVLB     0x0                                                                                             
+000166   518a     MOVF      0x8a,0x0,0x1                                                                                    
+000168   24f3     ADDWF     0xf3,0x0,0x0                                                                                    
+00016a   6f8a     MOVWF     0x8a,0x1                                                                                        
+00016c   518b     MOVF      0x8b,0x0,0x1                                                                                    
+00016e   20f4     ADDWFC    0xf4,0x0,0x0                                                                                    
+000170   6f8b     MOVWF     0x8b,0x1                                                                                        
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           			// Get Y Axis Data                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+000172   0e04     MOVLW     0x4            		ADCON0 = 0b00000100;	// AN1                                                    Z:\home\morgul\development\BtAccel\BtAccel.c
+000174   6ec2     MOVWF     0xc2,0x0                                                                                        
+000176   df9c     RCALL     0xb0           		yaxis = yaxis + doADCon ();                                                    Z:\home\morgul\development\BtAccel\BtAccel.c
+000178   0100     MOVLB     0x0                                                                                             
+00017a   518c     MOVF      0x8c,0x0,0x1                                                                                    
+00017c   24f3     ADDWF     0xf3,0x0,0x0                                                                                    
+00017e   6f8c     MOVWF     0x8c,0x1                                                                                        
+000180   518d     MOVF      0x8d,0x0,0x1                                                                                    
+000182   20f4     ADDWFC    0xf4,0x0,0x0                                                                                    
+000184   6f8d     MOVWF     0x8d,0x1                                                                                        
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           			// Get Z Axis Data                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+000186   0e08     MOVLW     0x8            		ADCON0 = 0b00001000;	// AN2                                                    Z:\home\morgul\development\BtAccel\BtAccel.c
+000188   6ec2     MOVWF     0xc2,0x0                                                                                        
+00018a   df92     RCALL     0xb0           		zaxis = zaxis + doADCon ();                                                    Z:\home\morgul\development\BtAccel\BtAccel.c
+00018c   0100     MOVLB     0x0                                                                                             
+00018e   518e     MOVF      0x8e,0x0,0x1                                                                                    
+000190   24f3     ADDWF     0xf3,0x0,0x0                                                                                    
+000192   6f8e     MOVWF     0x8e,0x1                                                                                        
+000194   518f     MOVF      0x8f,0x0,0x1                                                                                    
+000196   20f4     ADDWFC    0xf4,0x0,0x0                                                                                    
+000198   6f8f     MOVWF     0x8f,0x1                                                                                        
+00019a   2adf     INCF      0xdf,0x1,0x0   		idx++;                                                                         Z:\home\morgul\development\BtAccel\BtAccel.c
+00019c   0e01     MOVLW     0x1                                                                                             
+00019e   e3d4     BNC       0x148                                                                                           
+0001a0   2adb     INCF      0xdb,0x1,0x0                                                                                    
+                                           	}                                                                               Z:\home\morgul\development\BtAccel\BtAccel.c
+0001a4   0e02     MOVLW     0x2            }                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+0001a6   5ce1     SUBWF     0xe1,0x0,0x0                                                                                    
+0001a8   e202     BC        0x1ae                                                                                           
+0001aa   6ae1     CLRF      0xe1,0x0                                                                                        
+0001ac   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+0001ae   d097     BRA       0x2de                                                                                           
+0002de   6ee1     MOVWF     0xe1,0x0                                                                                        
+0002e0   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+0002e2   cfe7     MOVFF     0xfe7,0xfd9                                                                                     
+0002e4   ffd9                                                                                                               
+0002e6   0012     RETURN    0x0                                                                                             
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           #pragma interruptlow timer_isr                                                   Z:\home\morgul\development\BtAccel\BtAccel.c
+0001b0   cfd8     MOVFF     0xfd8,0xfe4    void timer_isr (void)                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+0001b2   ffe4                                                                                                               
+0001b4   cfe0     MOVFF     0xfe0,0xfe4                                                                                     
+0001b6   ffe4                                                                                                               
+0001b8   6ee4     MOVWF     0xe4,0x0                                                                                        
+0001ba   cfda     MOVFF     0xfda,0xfe4                                                                                     
+0001bc   ffe4                                                                                                               
+0001be   52e6     MOVF      0xe6,0x1,0x0                                                                                    
+                                           {                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	//INTCONbits.TMR0IF = 0;                                                        Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// Variable defines                                                             Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+0001c0   52e5     MOVF      0xe5,0x1,0x0   }                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+0001c2   cfe5     MOVFF     0xfe5,0xfda                                                                                     
+0001c4   ffda                                                                                                               
+0001c6   50e5     MOVF      0xe5,0x0,0x0                                                                                    
+0001c8   cfe5     MOVFF     0xfe5,0xfe0                                                                                     
+0001ca   ffe0                                                                                                               
+0001cc   cfe5     MOVFF     0xfe5,0xfd8                                                                                     
+0001ce   ffd8                                                                                                               
+0001d0   0010     RETFIE    0x0                                                                                             
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           #pragma code low_interrupt = 0x18                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           void low_interrupt (void)                                                        Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           {                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+000018   efd8     GOTO      0x1b0          	_asm goto timer_isr _endasm                                                     Z:\home\morgul\development\BtAccel\BtAccel.c
+00001a   f000                                                                                                               
+00001c   0012     RETURN    0x0            }                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           #pragma code                                                                     Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+0001d2   d89e     RCALL     0x310          void main (void)                                                                 Z:\home\morgul\development\BtAccel\BtAccel.c
+0001d4   0e42     MOVLW     0x42                                                                                            
+0001d6   26e1     ADDWF     0xe1,0x1,0x0                                                                                    
+                                           {                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	/*----------------------- PIC Pin Configuration -----------------------*/       Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// Configure PORTA                                                              Z:\home\morgul\development\BtAccel\BtAccel.c
+0001d8   6892     SETF      0x92,0x0       	TRISA = 0b11111111;		// AN0-3 Inputs, rest Outputs, bit 6,7 1 for external osc. Z:\home\morgul\development\BtAccel\BtAccel.c
+0001da   6a93     CLRF      0x93,0x0       	TRISB = 0b00000000;                                                             Z:\home\morgul\development\BtAccel\BtAccel.c
+0001dc   0e81     MOVLW     0x81           	TRISC = 0b10000001;		// RC7,RC0 as inputs                                       Z:\home\morgul\development\BtAccel\BtAccel.c
+0001de   6e94     MOVWF     0x94,0x0                                                                                        
+                                           	                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// Set initial conditions for output ports                                      Z:\home\morgul\development\BtAccel\BtAccel.c
+0001e0   0ef7     MOVLW     0xf7           	LATA = 0b11110111;                                                              Z:\home\morgul\development\BtAccel\BtAccel.c
+0001e2   6e89     MOVWF     0x89,0x0                                                                                        
+0001e4   0ec0     MOVLW     0xc0           	LATB = 0b11000000;                                                              Z:\home\morgul\development\BtAccel\BtAccel.c
+0001e6   6e8a     MOVWF     0x8a,0x0                                                                                        
+0001e8   0e60     MOVLW     0x60           	LATC = 0b01100000;                                                              Z:\home\morgul\development\BtAccel\BtAccel.c
+0001ea   6e8b     MOVWF     0x8b,0x0                                                                                        
+                                           	                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// Set up A/D Converter                                                         Z:\home\morgul\development\BtAccel\BtAccel.c
+0001ec   6ac2     CLRF      0xc2,0x0       	ADCON0 = 0b00000000;	// Select AN0                                              Z:\home\morgul\development\BtAccel\BtAccel.c
+0001ee   0e1a     MOVLW     0x1a           	ADCON1 = 0b00011010;                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+0001f0   6ec1     MOVWF     0xc1,0x0                                                                                        
+0001f2   0e9e     MOVLW     0x9e           	ADCON2 = 0b10011110;	// OSC/64, max acq. delay, Results right justified         Z:\home\morgul\development\BtAccel\BtAccel.c
+0001f4   6ec0     MOVWF     0xc0,0x0                                                                                        
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// Configure for USART                                                          Z:\home\morgul\development\BtAccel\BtAccel.c
+0001f6   8eab     BSF       0xab,0x7,0x0   	RCSTAbits.SPEN = 1;                                                             Z:\home\morgul\development\BtAccel\BtAccel.c
+0001f8   9c94     BCF       0x94,0x6,0x0   	TRISCbits.TRISC6 = 0;                                                           Z:\home\morgul\development\BtAccel\BtAccel.c
+0001fa   8e94     BSF       0x94,0x7,0x0   	TRISCbits.TRISC7 = 1;                                                           Z:\home\morgul\development\BtAccel\BtAccel.c
+0001fc   84ac     BSF       0xac,0x2,0x0   	TXSTAbits.BRGH = 1;                                                             Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// Configure Global Interrupt                                                   Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	//INTCONbits.GIE = 1;                                                           Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// Initialize USART                                                             Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	OpenUSART (USART_TX_INT_OFF &                                                   Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           				USART_RX_INT_OFF &                                                           Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           				USART_ASYNCH_MODE &                                                          Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           				USART_EIGHT_BIT &                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           				USART_CONT_RX &                                                              Z:\home\morgul\development\BtAccel\BtAccel.c
+0001fe   0e40     MOVLW     0x40           				USART_BRGH_LOW, 64); // 9600 baud, USART communication.                      Z:\home\morgul\development\BtAccel\BtAccel.c
+000200   6ee6     MOVWF     0xe6,0x0                                                                                        
+000202   6ae6     CLRF      0xe6,0x0                                                                                        
+000204   0e2c     MOVLW     0x2c                                                                                            
+000206   6ee6     MOVWF     0xe6,0x0                                                                                        
+000208   ecdc     CALL      0x3b8,0x0                                                                                       
+00020a   f001                                                                                                               
+00020c   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+00020e   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+000210   52e5     MOVF      0xe5,0x1,0x0                                                                                    
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// Initialize Timer0                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	/*OpenTimer0 (TIMER_INT_ON &			// Timer Interupt on                             Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           					T0_16BIT &			// 16 bit timer width                                          Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           					T0_SOURCE_INT &		// Internal timer clock                                    Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           					T0_PS_1_256);		// Timer Prescalar 1:256                                     Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	WriteTimer0 (0);*/					// Write initial value                                   Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	/*---------------------------------------------------------------------*/       Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	/*----------------------------- Main Loop -----------------------------*/       Z:\home\morgul\development\BtAccel\BtAccel.c
+000286   d7c3     BRA       0x20e          	while (true)                                                                    Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	{                                                                               Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	char mesg[64];                                                                  Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	char* pMsg;                                                                     Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+000212   cfd9     MOVFF     0xfd9,0x2      	pMsg = mesg;                                                                    Z:\home\morgul\development\BtAccel\BtAccel.c
+000214   f002                                                                                                               
+000216   cfda     MOVFF     0xfda,0x3                                                                                       
+000218   f003                                                                                                               
+00021a   0e40     MOVLW     0x40                                                                                            
+00021c   cfd9     MOVFF     0xfd9,0xfdb                                                                                     
+00021e   ffdb                                                                                                               
+000220   0e41     MOVLW     0x41                                                                                            
+000222   cfda     MOVFF     0xfda,0xfdb                                                                                     
+000224   ffdb                                                                                                               
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+000226   df8b     RCALL     0x13e          	doMeasure ();                                                                   Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           		                                                                               Z:\home\morgul\development\BtAccel\BtAccel.c
+000228   c08a     MOVFF     0x8a,0xfe6     	pMsg = prepareString (pMsg, 'X', xaxis);                                        Z:\home\morgul\development\BtAccel\BtAccel.c
+00022a   ffe6                                                                                                               
+00022c   c08b     MOVFF     0x8b,0xfe6                                                                                      
+00022e   ffe6                                                                                                               
+000230   0e58     MOVLW     0x58                                                                                            
+000232   d82a     RCALL     0x288                                                                                           
+000234   c08c     MOVFF     0x8c,0xfe6     	pMsg = prepareString (pMsg, 'Y', yaxis);                                        Z:\home\morgul\development\BtAccel\BtAccel.c
+000236   ffe6                                                                                                               
+000238   c08d     MOVFF     0x8d,0xfe6                                                                                      
+00023a   ffe6                                                                                                               
+00023c   0e59     MOVLW     0x59                                                                                            
+00023e   d824     RCALL     0x288                                                                                           
+000240   c08e     MOVFF     0x8e,0xfe6     	pMsg = prepareString (pMsg, 'Z', zaxis);                                        Z:\home\morgul\development\BtAccel\BtAccel.c
+000242   ffe6                                                                                                               
+000244   c08f     MOVFF     0x8f,0xfe6                                                                                      
+000246   ffe6                                                                                                               
+000248   0e5a     MOVLW     0x5a                                                                                            
+00024a   d81e     RCALL     0x288                                                                                           
+000288   6ee6     MOVWF     0xe6,0x0                                                                                        
+00028a   0e40     MOVLW     0x40                                                                                            
+00028c   cfdb     MOVFF     0xfdb,0xfe6                                                                                     
+00028e   ffe6                                                                                                               
+000290   0e41     MOVLW     0x41                                                                                            
+000292   cfdb     MOVFF     0xfdb,0xfe6                                                                                     
+000294   ffe6                                                                                                               
+000296   df16     RCALL     0xc4                                                                                            
+000298   6e02     MOVWF     0x2,0x0                                                                                         
+00029a   0e05     MOVLW     0x5                                                                                             
+00029c   5ee1     SUBWF     0xe1,0x1,0x0                                                                                    
+00029e   5002     MOVF      0x2,0x0,0x0                                                                                     
+0002a0   0e40     MOVLW     0x40                                                                                            
+0002a2   cff3     MOVFF     0xff3,0xfdb                                                                                     
+0002a4   ffdb                                                                                                               
+0002a6   0e41     MOVLW     0x41                                                                                            
+0002a8   cff4     MOVFF     0xff4,0xfdb                                                                                     
+0002aa   ffdb                                                                                                               
+0002ac   0012     RETURN    0x0                                                                                             
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+00024c   d83c     RCALL     0x2c6          	*pMsg++ = '\r';                                                                 Z:\home\morgul\development\BtAccel\BtAccel.c
+00024e   e301     BNC       0x252                                                                                           
+000250   2adb     INCF      0xdb,0x1,0x0                                                                                    
+000252   0e0d     MOVLW     0xd                                                                                             
+000254   6eef     MOVWF     0xef,0x0                                                                                        
+000256   d837     RCALL     0x2c6          	*pMsg++ = '\n';                                                                 Z:\home\morgul\development\BtAccel\BtAccel.c
+000258   e301     BNC       0x25c                                                                                           
+00025a   2adb     INCF      0xdb,0x1,0x0                                                                                    
+00025c   0e0a     MOVLW     0xa                                                                                             
+00025e   6eef     MOVWF     0xef,0x0                                                                                        
+000260   d832     RCALL     0x2c6          	*pMsg++ = 0;                                                                    Z:\home\morgul\development\BtAccel\BtAccel.c
+000262   e301     BNC       0x266                                                                                           
+000264   2adb     INCF      0xdb,0x1,0x0                                                                                    
+000266   6aef     CLRF      0xef,0x0                                                                                        
+0002c6   0e40     MOVLW     0x40                                                                                            
+0002c8   cfdb     MOVFF     0xfdb,0xfe9                                                                                     
+0002ca   ffe9                                                                                                               
+0002cc   2adb     INCF      0xdb,0x1,0x0                                                                                    
+0002ce   0e41     MOVLW     0x41                                                                                            
+0002d0   cfdb     MOVFF     0xfdb,0xfea                                                                                     
+0002d2   ffea                                                                                                               
+0002d4   0012     RETURN    0x0                                                                                             
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+000268   0100     MOVLB     0x0            	xaxis = 0;                                                                      Z:\home\morgul\development\BtAccel\BtAccel.c
+00026a   6b8a     CLRF      0x8a,0x1                                                                                        
+00026c   6b8b     CLRF      0x8b,0x1                                                                                        
+00026e   6b8c     CLRF      0x8c,0x1       	yaxis = 0;                                                                      Z:\home\morgul\development\BtAccel\BtAccel.c
+000270   6b8d     CLRF      0x8d,0x1                                                                                        
+000272   6b8e     CLRF      0x8e,0x1       	zaxis = 0;                                                                      Z:\home\morgul\development\BtAccel\BtAccel.c
+000274   6b8f     CLRF      0x8f,0x1                                                                                        
+                                           	                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// If the Linkmatik isn't connected to anyone, we shouldn't spit out data.      Z:\home\morgul\development\BtAccel\BtAccel.c
+000276   a082     BTFSS     0x82,0x0,0x0   	if (PORTCbits.RC0 == 1)                                                         Z:\home\morgul\development\BtAccel\BtAccel.c
+000278   d7cc     BRA       0x212                                                                                           
+                                           	{                                                                               Z:\home\morgul\development\BtAccel\BtAccel.c
+00027a   cfd9     MOVFF     0xfd9,0xfe6    		putsUSART(mesg);                                                               Z:\home\morgul\development\BtAccel\BtAccel.c
+00027c   ffe6                                                                                                               
+00027e   cfda     MOVFF     0xfda,0xfe6                                                                                     
+000280   ffe6                                                                                                               
+000282   ec0e     CALL      0x41c,0x0                                                                                       
+000284   f002                                                                                                               
+                                           }                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           		//Sleep();                                                                     Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	}                                                                               Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	/*---------------------------------------------------------------------*/       Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           }                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           /*#include <p18f2320.h>                                                          Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           #include <timers.h>                                                              Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           #pragma config OSC=HSPLL                                                         Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           void timer_isr (void);                                                           Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           #pragma code low_vector=0x18                                                     Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           void low_interrupt (void)                                                        Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           {                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	_asm GOTO timer_isr _endasm                                                     Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           }                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           #pragma code                                                                     Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           #pragma interruptlow timer_isr                                                   Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           void timer_isr (void)                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           {                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	INTCONbits.TMR0IF = 0;                                                          Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	PORTAbits.RA4 = 0;                                                              Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	PORTAbits.RA4 = 1;                                                              Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           }                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           void main (void)                                                                 Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           {                                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	TRISA = 0b11000111;		// AN0-3 Inputs, rest Outputs, bit 6,7 1 for external osc. Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	// Set initial conditions for output ports                                      Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	LATA = 0b11110111;                                                              Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	OpenTimer0 (TIMER_INT_ON & T0_SOURCE_INT & T0_16BIT & T0_PS_1_2);               Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	WriteTimer0 (0);                                                                Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	INTCONbits.GIE = 1;                                                             Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	while (1)                                                                       Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	{                                                                               Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           	}                                                                               Z:\home\morgul\development\BtAccel\BtAccel.c
+                                           }*/                                                                              Z:\home\morgul\development\BtAccel\BtAccel.c
+                                                                                                                            Z:\home\morgul\development\BtAccel\BtAccel.c

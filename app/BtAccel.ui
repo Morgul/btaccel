@@ -1,0 +1,531 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>705</width>
+    <height>621</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QHBoxLayout" >
+    <item>
+     <widget class="QTabWidget" name="Tabs" >
+      <property name="currentIndex" >
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="AccelTab" >
+       <attribute name="title" >
+        <string>Accelerometer</string>
+       </attribute>
+       <widget class="QLCDNumber" name="lcdNumber" >
+        <property name="geometry" >
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>91</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font" >
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="frameShadow" >
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="smallDecimalPoint" >
+         <bool>true</bool>
+        </property>
+        <property name="segmentStyle" >
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+       </widget>
+       <widget class="QLCDNumber" name="lcdNumber_2" >
+        <property name="geometry" >
+         <rect>
+          <x>10</x>
+          <y>70</y>
+          <width>91</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font" >
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="frameShadow" >
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="smallDecimalPoint" >
+         <bool>true</bool>
+        </property>
+        <property name="segmentStyle" >
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+       </widget>
+       <widget class="QLCDNumber" name="lcdNumber_3" >
+        <property name="geometry" >
+         <rect>
+          <x>10</x>
+          <y>120</y>
+          <width>91</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font" >
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="frameShadow" >
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="smallDecimalPoint" >
+         <bool>true</bool>
+        </property>
+        <property name="segmentStyle" >
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label" >
+        <property name="geometry" >
+         <rect>
+          <x>110</x>
+          <y>30</y>
+          <width>91</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="font" >
+         <font>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>X Axis</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2" >
+        <property name="geometry" >
+         <rect>
+          <x>110</x>
+          <y>80</y>
+          <width>91</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="font" >
+         <font>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>Y Axis</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3" >
+        <property name="geometry" >
+         <rect>
+          <x>110</x>
+          <y>130</y>
+          <width>91</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="font" >
+         <font>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+        <property name="text" >
+         <string>Z Axis</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox" >
+        <property name="geometry" >
+         <rect>
+          <x>210</x>
+          <y>10</y>
+          <width>311</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="title" >
+         <string>Peak Accelerations</string>
+        </property>
+        <property name="checkable" >
+         <bool>false</bool>
+        </property>
+        <widget class="QLCDNumber" name="lcdNumber_4" >
+         <property name="geometry" >
+          <rect>
+           <x>20</x>
+           <y>30</y>
+           <width>61</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font" >
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="frameShadow" >
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="smallDecimalPoint" >
+          <bool>true</bool>
+         </property>
+         <property name="segmentStyle" >
+          <enum>QLCDNumber::Flat</enum>
+         </property>
+        </widget>
+        <widget class="QLCDNumber" name="lcdNumber_6" >
+         <property name="geometry" >
+          <rect>
+           <x>20</x>
+           <y>60</y>
+           <width>61</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font" >
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="frameShadow" >
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="smallDecimalPoint" >
+          <bool>true</bool>
+         </property>
+         <property name="segmentStyle" >
+          <enum>QLCDNumber::Flat</enum>
+         </property>
+        </widget>
+        <widget class="QLCDNumber" name="lcdNumber_7" >
+         <property name="geometry" >
+          <rect>
+           <x>20</x>
+           <y>90</y>
+           <width>61</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font" >
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="frameShadow" >
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="smallDecimalPoint" >
+          <bool>true</bool>
+         </property>
+         <property name="segmentStyle" >
+          <enum>QLCDNumber::Flat</enum>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_4" >
+         <property name="geometry" >
+          <rect>
+           <x>90</x>
+           <y>30</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text" >
+          <string>X Axis Peak</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_5" >
+         <property name="geometry" >
+          <rect>
+           <x>90</x>
+           <y>60</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text" >
+          <string>Y Axis Peak</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_6" >
+         <property name="geometry" >
+          <rect>
+           <x>90</x>
+           <y>90</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text" >
+          <string>Z Axis Peak</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton" >
+         <property name="geometry" >
+          <rect>
+           <x>180</x>
+           <y>30</y>
+           <width>121</width>
+           <height>29</height>
+          </rect>
+         </property>
+         <property name="text" >
+          <string>Clear Peaks</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_2" >
+         <property name="geometry" >
+          <rect>
+           <x>20</x>
+           <y>120</y>
+           <width>281</width>
+           <height>29</height>
+          </rect>
+         </property>
+         <property name="text" >
+          <string>Record Peaks</string>
+         </property>
+         <property name="checkable" >
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_3" >
+         <property name="geometry" >
+          <rect>
+           <x>180</x>
+           <y>70</y>
+           <width>121</width>
+           <height>29</height>
+          </rect>
+         </property>
+         <property name="text" >
+          <string>Save Peaks</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="TermTab" >
+       <attribute name="title" >
+        <string>Terminal</string>
+       </attribute>
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QTextEdit" name="TermEdit" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="frameShape" >
+           <enum>QFrame::WinPanel</enum>
+          </property>
+          <property name="frameShadow" >
+           <enum>QFrame::Sunken</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QLineEdit" name="lineEdit" />
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_4" >
+            <property name="text" >
+             <string>Send</string>
+            </property>
+            <property name="checkable" >
+             <bool>true</bool>
+            </property>
+            <property name="checked" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="DevTab" >
+       <attribute name="title" >
+        <string>Devices</string>
+       </attribute>
+       <layout class="QHBoxLayout" >
+        <item>
+         <widget class="QListView" name="listView" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+            <horstretch>2</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_2" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>10</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="title" >
+           <string>Options</string>
+          </property>
+          <widget class="QPushButton" name="pushButton_5" >
+           <property name="geometry" >
+            <rect>
+             <x>10</x>
+             <y>30</y>
+             <width>201</width>
+             <height>29</height>
+            </rect>
+           </property>
+           <property name="text" >
+            <string>Scan for Devices</string>
+           </property>
+           <property name="checkable" >
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_6" >
+           <property name="geometry" >
+            <rect>
+             <x>10</x>
+             <y>70</y>
+             <width>201</width>
+             <height>29</height>
+            </rect>
+           </property>
+           <property name="text" >
+            <string>Connect to Selected</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_7" >
+           <property name="geometry" >
+            <rect>
+             <x>10</x>
+             <y>110</y>
+             <width>201</width>
+             <height>29</height>
+            </rect>
+           </property>
+           <property name="text" >
+            <string>Disconnect from Selected</string>
+           </property>
+          </widget>
+          <widget class="QGroupBox" name="groupBox_3" >
+           <property name="geometry" >
+            <rect>
+             <x>10</x>
+             <y>149</y>
+             <width>201</width>
+             <height>121</height>
+            </rect>
+           </property>
+           <property name="title" >
+            <string>Connect As:</string>
+           </property>
+           <widget class="QRadioButton" name="radioButton" >
+            <property name="geometry" >
+             <rect>
+              <x>10</x>
+              <y>20</y>
+              <width>102</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="text" >
+             <string>L2CAP</string>
+            </property>
+           </widget>
+           <widget class="QRadioButton" name="radioButton_2" >
+            <property name="geometry" >
+             <rect>
+              <x>10</x>
+              <y>40</y>
+              <width>102</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="text" >
+             <string>RFCOMM</string>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>705</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuPreferences" >
+    <property name="title" >
+     <string>Preferences</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout" />
+    <addaction name="actionNo_Help_Here" />
+   </widget>
+   <addaction name="menuPreferences" />
+   <addaction name="menuHelp" />
+  </widget>
+  <action name="actionDiscover_Devices" >
+   <property name="text" >
+    <string>Discover Devices</string>
+   </property>
+  </action>
+  <action name="actionDisconnect" >
+   <property name="text" >
+    <string>Disconnect</string>
+   </property>
+  </action>
+  <action name="actionAbout" >
+   <property name="text" >
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionNo_Help_Here" >
+   <property name="text" >
+    <string>No Help Here</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
